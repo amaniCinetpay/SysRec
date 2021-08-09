@@ -39,6 +39,5 @@ RUN pip install -r requirements.txt
 RUN apk add --no-cache bash
 
 EXPOSE 7000
-EXPOSE 5433
-EXPOSE 80
-EXPOSE 9100
+EXPOSE 5432
+EXPOSE 82

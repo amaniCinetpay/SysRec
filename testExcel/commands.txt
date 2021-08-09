@@ -1,0 +1,2 @@
+docker build --tag reconciliation . 
+docker run --publish 8000:8000 reconciliation

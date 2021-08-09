@@ -11,8 +11,8 @@ import requests
 from .serializers import CreateUserSerializer
 
 
-CLIENT_ID = '8BXpLL2RBHgmjaaXSiEiwIEkSQXmZqQ7wxNiVKNK'
-CLIENT_SECRET = 'yUQ9VeHJikm4zPq5oOBUvf4evHYKvm32IAJ5L6E3UqwHYL7MfwYIQTGY2ORHd83CIXW19L2mmdGWa9ZrphQbscnykznfHXCsfsvNUG6zggqZtVqG4yaxMnszcsPuFzwX'
+CLIENT_ID = 'grTE4R1H1QRu1zgHcfKiwtkvySFRBbn5WmVmLxML'
+CLIENT_SECRET = 'bvsRTGnqgdKnuqb490oTbaRcPD9voTzTrgMm8Hr6Eoufa58zuegmGEnRrLPy2X4atqARcuNnzjaFoy7TKHHsyE31fRhEpUolLApE5MFeObQ7XECVelBEWAuJt2HWI3lN'
 
 
 

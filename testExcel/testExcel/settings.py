@@ -209,7 +209,7 @@ BACKGROUND_TASK_RUN_ASYNC = True
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'http://15.188.14.148:82',
+    'http://13.37.112.221:82',
 ] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
 # CORS_ORIGIN_REGEX_WHITELIST = [
 #     'http://localhost:3030',

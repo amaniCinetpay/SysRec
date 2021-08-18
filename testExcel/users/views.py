@@ -11,9 +11,6 @@ import requests, os
 from .serializers import CreateUserSerializer
 
 
-CLIENT_ID = 'grTE4R1H1QRu1zgHcfKiwtkvySFRBbn5WmVmLxML'
-CLIENT_SECRET = 'bvsRTGnqgdKnuqb490oTbaRcPD9voTzTrgMm8Hr6Eoufa58zuegmGEnRrLPy2X4atqARcuNnzjaFoy7TKHHsyE31fRhEpUolLApE5MFeObQ7XECVelBEWAuJt2HWI3lN'
-
 
 
 @api_view(['POST'])

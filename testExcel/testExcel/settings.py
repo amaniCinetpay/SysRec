@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from posix import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,16 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-256mpepa1@=_)+zcnup8@serdfj^ssapcteuj7p89fsis_nwf%')
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "True")
+DEBUG = os.environ["DEBUG"]
 if DEBUG == "True" :
     DEBUG = True
 else :
     DEBUG = False
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOST", "*").split(",")
+ALLOWED_HOSTS = os.environ["ALLOWED_HOST"].split(",")
 
 
 # Application definition
@@ -108,15 +109,15 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': os.getenv("DB_NAME", ""),
+        'NAME': os.environ["DB_NAME"],
 
-        'USER': os.getenv("DB_USER", ""),
+        'USER': os.environ["DB_USER"],
 
-        'PASSWORD': os.getenv("DB_PASSWORD", ""),
+        'PASSWORD': os.environ["DB_PASSWORD"],
 
-        'HOST': os.getenv("DB_HOST", ""),
+        'HOST': os.environ["DB_HOST"],
 
-        'PORT': os.getenv("DB_PORT", ""),
+        'PORT': os.environ["DB_PORT"],
 
     }
 
@@ -214,7 +215,7 @@ BACKGROUND_TASK_RUN_ASYNC = True
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'http://{}:{}'.format(os.getenv("ANGULAR_HOST", "127.0.0.1"), int(os.getenv("ANGULAR_PORT", 4200))),
+    'http://{}:{}'.format(os.environ["ANGULAR_HOST"], int(os.environ["ANGULAR_PORT"])),
 ] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
 # CORS_ORIGIN_REGEX_WHITELIST = [
 #     'http://localhost:3030',

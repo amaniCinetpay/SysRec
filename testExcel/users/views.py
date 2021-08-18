@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 
-import requests
+import requests, os
 
 from .serializers import CreateUserSerializer
 
@@ -31,13 +31,13 @@ def register(request):
         serializer.save() 
         # Then we get a token for the created user.
         # This could be done differentley 
-        r = requests.post('http://13.37.112.221:7000/o/token/', 
+        r = requests.post('http://{}:{}/o/token/'.format(os.getenv("DJANGO_HOST", "127.0.0.1"), int(os.getenv("DJANGO_PORT",8000))), 
             data={
                 'grant_type': 'password',
                 'username': request.data['username'],
                 'password': request.data['password'],
-                'client_id': CLIENT_ID,
-                'client_secret': CLIENT_SECRET,
+                'client_id': os.getenv("CLIENT_ID", ""),
+                'client_secret': os.getenv("CLIENT_SECRET",),
             },
         )
         
@@ -53,16 +53,15 @@ def token(request):
     Gets tokens with username and password. Input should be in the format:
     {"username": "username", "password": "1234abcd"}
     '''
-    r = requests.post(
-    'http://13.37.112.221:7000/o/token/', 
-        data={
-            'grant_type': 'password',
-            'username': request.data['username'],
-            'password': request.data['password'],
-            'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET,
-        },
-    )
+    r = requests.post('http://{}:{}/o/token/'.format(os.getenv("DJANGO_HOST", "127.0.0.1"), int(os.getenv("DJANGO_PORT",8000))), 
+            data={
+                'grant_type': 'password',
+                'username': request.data['username'],
+                'password': request.data['password'],
+                'client_id': os.getenv("CLIENT_ID", ""),
+                'client_secret': os.getenv("CLIENT_SECRET",""),
+            },
+        )
     user = User.objects.get(username=request.data['username'])
     nom = user.last_name
     prenom = user.first_name
@@ -89,12 +88,12 @@ def refresh_token(request):
     {"refresh_token": "<token>"}
     '''
     r = requests.post(
-    'http://13.37.112.221:7000/o/token/', 
+    'http://{}:{}/o/token/'.format(os.getenv("DJANGO_HOST", "127.0.0.1"), int(os.getenv("DJANGO_PORT",8000))), 
         data={
             'grant_type': 'refresh_token',
             'refresh_token': request.data['refresh_token'],
-            'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET,
+            'client_id': os.getenv("CLIENT_ID", ""),
+            'client_secret': os.getenv("CLIENT_SECRET",""),
         },
     )
     return Response(r.json())
@@ -108,11 +107,11 @@ def revoke_token(request):
     {"token": "<token>"}
     '''
     r = requests.post(
-        'http://13.37.112.221:7000/o/revoke_token/', 
+        'http://{}:{}/o/revoke_token/'.format(os.getenv("DJANGO_HOST", "127.0.0.1"), int(os.getenv("DJANGO_PORT",8000))), 
         data={
             'token': request.data['token'],
-            'client_id': CLIENT_ID,
-            'client_secret': CLIENT_SECRET,
+            'client_id': os.getenv("CLIENT_ID", ""),
+            'client_secret': os.getenv("CLIENT_SECRET", ""),
         },
     )
     # If it goes well return sucess message (would be empty otherwise) 

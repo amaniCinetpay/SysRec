@@ -36,6 +36,8 @@ VOLUME /app/logs
 # COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
+RUN python manage.py makemigrations && python manage.py migrate
+
 RUN apk add --no-cache bash
 
 EXPOSE 7000

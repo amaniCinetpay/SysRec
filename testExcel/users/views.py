@@ -34,7 +34,7 @@ def register(request):
                 'username': request.data['username'],
                 'password': request.data['password'],
                 'client_id': os.getenv("CLIENT_ID", ""),
-                'client_secret': os.getenv("CLIENT_SECRET",),
+                'client_secret': os.getenv("CLIENT_SECRET",""),
             },
         )
         

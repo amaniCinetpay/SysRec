@@ -17,6 +17,7 @@ from background_task import background
 from .constantes import *
 import string
 import datetime
+import os
 # from celery.decorators import task
 
 
@@ -820,7 +821,7 @@ def execute_reconcile(item,tache,token):
         'Authorization': token,
         'Content-Type': 'application/json'
     }   
-    requests.post('http://localhost:8000/api_test/catered/',
+    requests.post('http://{}:{}/api_test/catered/'.format(os.getenv("DJANGO_HOST"), int(os.getenv("DJANGO_PORT"))),
         json = {
             'item':item,
             'id_tache':tache.pk,
@@ -842,7 +843,7 @@ def execute_reconcile_ddva(trx,tache,token):
         'Authorization': token,
         'Content-Type': 'application/json'
     }   
-    requests.post('http://localhost:8000/api_test/catered_ddva/',
+    requests.post('http://{}:{}/api_test/catered_ddva/'.format(os.getenv("DJANGO_HOST"), int(os.getenv("DJANGO_PORT"))),
         json = {
             'trx':trx,
             'id_tache':tache.pk,
